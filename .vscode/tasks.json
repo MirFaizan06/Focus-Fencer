@@ -1,0 +1,134 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Metro Bundler",
+      "type": "shell",
+      "command": "npm start",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^\\s*$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*Metro.*$",
+          "endsPattern": "^.*Metro.*ready.*$"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": false
+      }
+    },
+    {
+      "label": "Run on Android Device",
+      "type": "shell",
+      "command": "npm run android",
+      "dependsOn": [],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Start Metro and Run Android",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Start Metro Bundler",
+        "Run on Android Device"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean Build",
+      "type": "shell",
+      "command": "cd android && .\\gradlew clean && cd ..",
+      "windows": {
+        "command": "cd android && .\\gradlew clean && cd .."
+      },
+      "linux": {
+        "command": "cd android && ./gradlew clean && cd .."
+      },
+      "osx": {
+        "command": "cd android && ./gradlew clean && cd .."
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Debug APK",
+      "type": "shell",
+      "command": "cd android && .\\gradlew assembleDebug && cd ..",
+      "windows": {
+        "command": "cd android && .\\gradlew assembleDebug && cd .."
+      },
+      "linux": {
+        "command": "cd android && ./gradlew assembleDebug && cd .."
+      },
+      "osx": {
+        "command": "cd android && ./gradlew assembleDebug && cd .."
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Release APK",
+      "type": "shell",
+      "command": "cd android && .\\gradlew assembleRelease && cd ..",
+      "windows": {
+        "command": "cd android && .\\gradlew assembleRelease && cd .."
+      },
+      "linux": {
+        "command": "cd android && ./gradlew assembleRelease && cd .."
+      },
+      "osx": {
+        "command": "cd android && ./gradlew assembleRelease && cd .."
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Release AAB",
+      "type": "shell",
+      "command": "cd android && .\\gradlew bundleRelease && cd ..",
+      "windows": {
+        "command": "cd android && .\\gradlew bundleRelease && cd .."
+      },
+      "linux": {
+        "command": "cd android && ./gradlew bundleRelease && cd .."
+      },
+      "osx": {
+        "command": "cd android && ./gradlew bundleRelease && cd .."
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check Connected Devices",
+      "type": "shell",
+      "command": "adb devices",
+      "problemMatcher": []
+    },
+    {
+      "label": "View Logcat",
+      "type": "shell",
+      "command": "adb logcat *:E",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

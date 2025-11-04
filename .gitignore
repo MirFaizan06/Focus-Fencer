@@ -43,11 +43,15 @@ DerivedData
 ios/.xcode.env.local
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
+
+# VS Code - Include project config, exclude user settings
+!.vscode/
+.vscode/*.code-workspace
+.vscode/settings.local.json
 
 # Temporary
 *.log
